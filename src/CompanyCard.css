@@ -1,0 +1,27 @@
+.CompanyCard {
+  width: 75%;
+  margin: 20px auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: -1px 1px grey;
+}
+
+.CompanyCard-name {
+  display: inline-block;
+  font-size: 1.5em;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: normal;
+}
+
+.CompanyCard-img {
+  float: right
+}
+
+
+.CompanyCard-description {
+  font-size: 1em;
+  margin-top: 0;
+  font-weight: normal;
+}

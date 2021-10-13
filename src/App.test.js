@@ -1,8 +1,21 @@
-import { render, screen } from '@testing-library/react';
+import { render, asFragment } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders without crashing', () => {
+  render(<MemoryRouter><App /></MemoryRouter>);
+});
+
+test('matches snapshot', () => {
+  const {asFragment} = render(<MemoryRouter><App /></MemoryRouter>);
+  expect(asFragment()).toMatchSnapshot();
+});
+
+test('renders nav bar and home page', () => {
+  const {getByText} = render(<MemoryRouter><App /></MemoryRouter>);
+
+  expect(getByText('Jobly')).toBeInTheDocument();
+  expect(getByText('Login')).toBeInTheDocument();
+  expect(getByText('Signup')).toBeInTheDocument();
+  expect(getByText('Home Page Welcome Message')).toBeInTheDocument();
 });

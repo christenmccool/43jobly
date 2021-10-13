@@ -1,0 +1,25 @@
+.NavBar {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  background-color: white;
+  padding: 20px;
+  border-bottom: 1px solid grey;
+}
+
+.NavBar-right {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  display: flex;
+  text-decoration: none;
+  color: blue;
+}
+
+nav a.active{
+  font-weight: bold;
+  color: black;
+}
+
