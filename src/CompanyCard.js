@@ -1,15 +1,24 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './CompanyCard.css'
 
-const CompanyCard = ({company}) => {
+/** CompanyCard component for Jobly app
+ * Renders a card displaying the company name, logo, and description
+ * Card links to /companies/:handle route which render CompanyDetail component
+ */
+
+const CompanyCard = ({handle, name, logoUrl, description}) => {
+
   return (
-    <div className="CompanyCard">
-      <div>
-        <h1 className="CompanyCard-name">{company.name}</h1>
-        <img className="CompanyCard-img" src={company.logoUrl} />
+    <Link to={`/companies/${handle}`}>
+      <div className="CompanyCard">
+        <div>
+          <h1 className="CompanyCard-name">{name}</h1>
+          {logoUrl ? <img className="CompanyCard-img" src={logoUrl} alt={name} /> : null}
+        </div>
+        <p className="CompanyCard-description">{description}</p>
       </div>
-      <div className="CompanyCard-description">{company.description}</div>
-    </div>
+    </Link>
   )
 }
 

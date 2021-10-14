@@ -1,0 +1,33 @@
+.JobPage-form  {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 20px;
+}
+
+.JobPage input  {
+  width: 75%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.25em;
+  border: 1px solid lightgrey;
+}
+
+.JobPage button  {
+  padding: 10px 15px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.JobPage-submit-btn  {
+  color: white;
+  background-color: blue;
+  border: none;
+}
+
+.JobPage-clear-btn  {
+  color: blue;
+  background-color: white;
+  border: 2px solid blue;
+}
+

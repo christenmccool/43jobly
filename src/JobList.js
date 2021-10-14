@@ -1,8 +1,23 @@
 import React from 'react';
+import JobCard from './JobCard';
 
-const JobList = () => {
+/** JobList component for Jobly app
+ * Renders a list of JobCards given a jobs list prop
+ */
+
+const JobList = ({jobs}) => {
+
   return (
-    <h1>Job List</h1>
+    <div className="JobList">
+      {jobs.map(job => 
+        <JobCard 
+          title={job.title} 
+          salary={job.salary} 
+          equity={job.equity} 
+          key={job.id}
+        />
+      )}
+    </div>
   )
 }
 

@@ -1,0 +1,11 @@
+.Home {
+  margin-top: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Home h2 {
+  font-weight: normal;
+}
