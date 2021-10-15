@@ -13,9 +13,17 @@
 }
 
 nav a {
-  display: flex;
   text-decoration: none;
   color: blue;
+  font-size: 1em;
+}
+
+.NavBar-logout-btn {
+  color: blue;
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  font-size: 1em;
 }
 
 nav a.active{

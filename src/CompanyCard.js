@@ -8,7 +8,6 @@ import './CompanyCard.css'
  */
 
 const CompanyCard = ({handle, name, logoUrl, description}) => {
-
   return (
     <Link to={`/companies/${handle}`}>
       <div className="CompanyCard">
