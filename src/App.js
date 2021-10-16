@@ -50,8 +50,8 @@ const App = () => {
     setToken(token);
   }
 
-  const editProfile = async (username, data) => {
-    const user = await JoblyApi.patchUser(username, data);
+  const editProfile = async (data) => {
+    const user = await JoblyApi.patchUser(user.username, data);
     setUser(user);
   }
 
@@ -60,12 +60,18 @@ const App = () => {
     setToken(null);
     setUser(null);
   }
+
+  const apply = async (jobid) => {
+    console.log("Hi");
+    const id = await JoblyApi.apply(user.username, jobid);
+    setUser({...user, applications: [...user.applications, id]});
+  }
  
   return (
     <UserContext.Provider value={user}>
       <div className="App">
         <NavBar logout={logout}/>
-        <Routes signup={signup} login={login} editProfile={editProfile}/>
+        <Routes signup={signup} login={login} editProfile={editProfile} apply={apply}/>
       </div>
     </UserContext.Provider>
   );

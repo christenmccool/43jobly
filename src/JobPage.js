@@ -3,7 +3,7 @@ import JoblyApi from './api';
 import JobList from './JobList';
 import "./JobPage.css";
 
-const JobPage = () => {
+const JobPage = ({apply}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [jobs, setJobs] = useState(null);
@@ -61,7 +61,7 @@ const JobPage = () => {
         </button>
       </form>
 
-      <JobList jobs={jobs} />
+      <JobList jobs={jobs} apply={apply}/>
     </div>
   )
 }

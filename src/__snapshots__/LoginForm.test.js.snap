@@ -23,7 +23,7 @@ exports[`if it matches snapshot 1`] = `
         name="username"
         required=""
         type="text"
-        value="christen"
+        value=""
       />
       <label
         for="password"
@@ -35,7 +35,7 @@ exports[`if it matches snapshot 1`] = `
         name="password"
         required=""
         type="password"
-        value="password"
+        value=""
       />
       <button>
         Submit

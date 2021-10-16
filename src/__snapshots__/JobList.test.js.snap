@@ -8,11 +8,18 @@ exports[`if it matches snapshot 1`] = `
     <div
       class="JobCard"
     >
-      <h1
-        class="JobCard-title"
-      >
-        Test title 1
-      </h1>
+      <div>
+        <h1
+          class="JobCard-title"
+        >
+          Test title 1
+        </h1>
+        <button
+          class="JobCard-btn JobCard-apply-btn"
+        >
+          Apply
+        </button>
+      </div>
       <p
         class="JobCard-info"
       >
@@ -27,11 +34,18 @@ exports[`if it matches snapshot 1`] = `
     <div
       class="JobCard"
     >
-      <h1
-        class="JobCard-title"
-      >
-        Test title 2
-      </h1>
+      <div>
+        <h1
+          class="JobCard-title"
+        >
+          Test title 2
+        </h1>
+        <button
+          class="JobCard-btn JobCard-apply-btn"
+        >
+          Apply
+        </button>
+      </div>
       <p
         class="JobCard-info"
       >

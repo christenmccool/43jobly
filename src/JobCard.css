@@ -8,14 +8,41 @@
   box-shadow: -1px 1px 2px lightgrey;
 }
 
-
 .JobCard-title {
   display: inline-block;
   font-size: 1.5em;
   margin-top: 0;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.25em;
   font-weight: normal;
 }
+
+.JobCard-btn {
+  padding: 10px;
+  border-radius: 5px;
+  float: right;
+  border: none;
+}
+
+.JobCard-apply-btn {
+  background-color: green;
+  color: white;
+}
+
+.JobCard-applied {
+  background-color: lightgrey;
+  color: darkgrey;
+  font-style: italic;
+}
+
+.JobCard-subtitle {
+  clear: none;
+  display: inline-block;
+  font-size: 1.25em;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+  font-weight: normal;
+}
+
 
 .JobCard-info {
   font-size: 1em;

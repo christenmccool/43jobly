@@ -5,9 +5,16 @@ exports[`if it matches snapshot 1`] = `
   <div
     class="JobCard"
   >
-    <h1
-      class="JobCard-title"
-    />
+    <div>
+      <h1
+        class="JobCard-title"
+      />
+      <button
+        class="JobCard-btn JobCard-apply-btn"
+      >
+        Apply
+      </button>
+    </div>
     <p
       class="JobCard-info"
     >

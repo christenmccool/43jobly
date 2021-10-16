@@ -11,7 +11,7 @@ import JobList from './JobList';
  * On mount, renders a JobCard for each of a company's job listings
  */
 
-const CompanyDetail = () => {
+const CompanyDetail = ({apply}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [company, setCompany] = useState(null);
 
@@ -36,7 +36,7 @@ const CompanyDetail = () => {
     <div>
       <h1 className="CompanyDetail-name">{company.name}</h1>
       <p className="CompanyDetail-description">{company.description}</p>
-      <JobList jobs={company.jobs} />
+      <JobList jobs={company.jobs} apply={apply}/>
     </div>
   )
 }

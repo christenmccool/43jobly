@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './Form.css';
 
 const LoginForm = ({login}) => {
-  const initialFormData = {username: "christen", password: "password"}
+  const initialFormData = {username: "", password: ""}
   const [formData, setFormData] = useState(initialFormData);
 
   const handleChange = (evt) => {

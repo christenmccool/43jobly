@@ -15,7 +15,7 @@ import './Routes.css';
  * Redirects to NotFound component if path not found
  */
 
-const Routes = ({signup, login, editProfile}) => {
+const Routes = ({signup, login, editProfile, apply}) => {
   const user = useContext(UserContext);
 
   if (user) {
@@ -29,10 +29,10 @@ const Routes = ({signup, login, editProfile}) => {
             <CompanyPage />
           </Route>
           <Route exact path="/companies/:handle">
-            <CompanyDetail />
+            <CompanyDetail apply={apply}/>
           </Route>
           <Route exact path="/jobs">
-            <JobPage />
+            <JobPage apply={apply}/>
           </Route>
           <Route exact path="/login">
             <Redirect to="/"></Redirect>

@@ -5,7 +5,7 @@ import JobCard from './JobCard';
  * Renders a list of JobCards given a jobs list prop
  */
 
-const JobList = ({jobs}) => {
+const JobList = ({jobs, apply}) => {
   
   return (
     <div className="JobList">
@@ -14,7 +14,11 @@ const JobList = ({jobs}) => {
           title={job.title} 
           salary={job.salary} 
           equity={job.equity} 
+          id={job.id}
           key={job.id}
+          companyName={job.companyName || null}
+          companyHandle={job.companyHandle || null}
+          apply={apply}
         />
       )}
     </div>

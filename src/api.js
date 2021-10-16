@@ -88,11 +88,16 @@ class JoblyApi {
   /** Get user from username. */
 
   static async getUser(username) {
-    let res = await this.request(`users/${username}`, "get");
+    let res = await this.request(`users/${username}`);
     return res.user;
   }
 
-  
+  /** Allow a user to apply for a job. */
+
+  static async apply(username, jobid) {
+    let res = await this.request(`users/${username}/jobs/${jobid}`, {}, "post");
+    return res.applied;
+  }
 
 }
 
