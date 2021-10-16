@@ -5,14 +5,22 @@ import NavBar from './NavBar';
 import Routes from './Routes';
 import JoblyApi from './api';
 import UserContext from './UserContext';
+import {useLocalStorage} from './hooks';
 
 
 /** Jobly app components
- * NavBar links to routes defined in Routes component
+ * 
+ * token obtained from and stored in localStorage
+ * user state updated whenever token changes by calling jwt.decode
+ * 
+ * user state provided to app with context provider UserContext
+ * signup, login, and editProfile functions provided to child Routes
+ * logout function provided to NavBar
  */
 
 const App = () => {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useLocalStorage("token", null);
+
   const [user, setUser] = useState(null);
   const history = useHistory();
 
@@ -23,10 +31,14 @@ const App = () => {
       const payload = jwt.decode(token);
       const user = await JoblyApi.getUser(payload.username);
       setUser(user);
-      history.push('/companies');
     }
     getUserFromToken();
   }, [token]);
+
+  useEffect(()=> {
+    if (!user) history.push('./');
+    if (user) history.push('/companies');
+  }, [user]);
 
   const signup = async (data) => {
     const token = await JoblyApi.registerUser(data);
@@ -41,7 +53,6 @@ const App = () => {
   const editProfile = async (username, data) => {
     const user = await JoblyApi.patchUser(username, data);
     setUser(user);
-    history.push('/companies');
   }
 
   const logout = async () => {

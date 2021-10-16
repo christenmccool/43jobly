@@ -34,10 +34,9 @@ const ProfileForm = ({editProfile}) => {
           id="username" 
           name="username" 
           type="text" 
-          placeholder={user.username} 
-          value={formData.username}
-          onChange={handleChange}
-          required
+          value={user.username}
+          readOnly
+          disabled
         />
         <label htmlFor="firstName">First name</label>
         <input 

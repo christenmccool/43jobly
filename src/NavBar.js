@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {NavLink, useHistory} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import './NavBar.css';
 import UserContext from './UserContext';
 
@@ -10,12 +10,6 @@ import UserContext from './UserContext';
  
 const NavBar = ({logout}) => {
   const user = useContext(UserContext);
-  const history = useHistory();
-
-  const handleLogout = () => {
-    logout();
-    history.push('/');
-  }
 
   if (user) {
     return (
@@ -27,7 +21,7 @@ const NavBar = ({logout}) => {
           <NavLink exact to="/companies">Companies</NavLink>
           <NavLink exact to="/jobs">Jobs</NavLink>
           <NavLink exact to="/profile">Profile</NavLink>
-          <button onClick={handleLogout} className="NavBar-logout-btn">Log out {user.username}</button>
+          <button onClick={logout} className="NavBar-logout-btn">Log out {user.username}</button>
         </div> 
       </nav>
     )
