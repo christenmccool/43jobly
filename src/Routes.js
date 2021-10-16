@@ -35,7 +35,7 @@ const Routes = ({user, signup, login, editProfile}) => {
             <Redirect to="/"></Redirect>
           </Route>
           <Route exact path="/signup">
-            <SignupForm />
+            <SignupForm signup={signup}/>
           </Route>
           <Route exact path="/profile">
             <ProfileForm user={user} editProfile={editProfile}/>

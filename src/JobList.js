@@ -6,7 +6,7 @@ import JobCard from './JobCard';
  */
 
 const JobList = ({jobs}) => {
-
+  
   return (
     <div className="JobList">
       {jobs.map(job => 

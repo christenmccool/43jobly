@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
+import jwt from 'jsonwebtoken';
 import NavBar from './NavBar';
 import Routes from './Routes';
 import JoblyApi from './api';
 
 
 /** Jobly app components
- * NavBar links to routes definted in Routes component
+ * NavBar links to routes defined in Routes component
  */
 
 const App = () => {
@@ -15,34 +16,30 @@ const App = () => {
   const history = useHistory();
 
   useEffect(()=> {
-    async function getUserFromToken(token) {
-      // const res = await JoblyApi.getUser(username);
-      // setUser(res);
+    async function getUserFromToken() {
+      if (!token) return;
+      JoblyApi.token = token;
+      const payload = jwt.decode(token);
+      const user = await JoblyApi.getUser(payload.username);
+      setUser(user);
+      history.push('/companies');
     }
     getUserFromToken();
   }, [token]);
 
   const signup = async (data) => {
     const token = await JoblyApi.registerUser(data);
-    JoblyApi.token = token;
     setToken(token);
-    setUser({username:data.username, firstName:data.firstName, lastName:data.lastName, email:data.email});
-    history.push('/companies');
   }
 
   const login = async (data) => {
     const token = await JoblyApi.loginUser(data);
-    JoblyApi.token = token;
     setToken(token);
-    const user = await JoblyApi.getUser(data.username);
-    console.log(user);
-    setUser(user);
-    history.push('/companies');
   }
 
-  const editProfile = async (username, password, firstName, lastName, email) => {
-    const user = await JoblyApi.patchUser(username, password, firstName, lastName, email);
-    setUser(user);
+  const editProfile = async (username, data) => {
+    const user = await JoblyApi.patchUser(username, data);
+    setUser({username:data.username, firstName:data.firstName, lastName:data.lastName, email:data.email});
     history.push('/companies');
   }
 
