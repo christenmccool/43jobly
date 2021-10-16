@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
+import UserContext from './UserContext';
 import './Home.css';
 
 /** Home page for Jobly app
@@ -7,7 +8,9 @@ import './Home.css';
  * When user is logged in, welcome by name.
  */
 
-const Home = ({user}) => {
+const Home = () => {
+  const user = useContext(UserContext);
+  
   return (
     <div className="Home">
       <h1>Jobly</h1>

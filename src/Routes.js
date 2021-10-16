@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import Home from './Home';
 import CompanyPage from './CompanyPage';
@@ -8,19 +8,22 @@ import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import ProfileForm from './ProfileForm';
 import NotFound from './NotFound';
+import UserContext from './UserContext';
 import './Routes.css';
 
 /** Routes component for Jobly app
  * Redirects to NotFound component if path not found
  */
 
-const Routes = ({user, signup, login, editProfile}) => {
+const Routes = ({signup, login, editProfile}) => {
+  const user = useContext(UserContext);
+
   if (user) {
     return (
       <div className="Routes">
         <Switch>
           <Route exact path="/">
-            <Home user={user} />
+            <Home />
           </Route>
           <Route exact path="/companies">
             <CompanyPage />
@@ -38,7 +41,7 @@ const Routes = ({user, signup, login, editProfile}) => {
             <SignupForm signup={signup}/>
           </Route>
           <Route exact path="/profile">
-            <ProfileForm user={user} editProfile={editProfile}/>
+            <ProfileForm editProfile={editProfile}/>
           </Route>
           <Route exact path="/404">
             <NotFound />

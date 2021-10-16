@@ -1,7 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import UserContext from './UserContext';
 import './Form.css';
 
-const ProfileForm = ({user, editProfile}) => {
+const ProfileForm = ({editProfile}) => {
+  const user = useContext(UserContext);
+
   const initialFormData = {...user, password: ""};
   const [formData, setFormData] = useState(initialFormData);
 
@@ -12,7 +15,13 @@ const ProfileForm = ({user, editProfile}) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    editProfile(formData.username, {password: formData.password, firstName: formData.firstName, lastName: formData.lastName, email: formData.email});
+    editProfile(formData.username, 
+                  {password: formData.password, 
+                    firstName: formData.firstName, 
+                    lastName: formData.lastName, 
+                    email: formData.email
+                  }
+                );
     setFormData(initialFormData);
   }
 

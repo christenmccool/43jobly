@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import NavBar from './NavBar';
 import Routes from './Routes';
 import JoblyApi from './api';
+import UserContext from './UserContext';
 
 
 /** Jobly app components
@@ -39,7 +40,7 @@ const App = () => {
 
   const editProfile = async (username, data) => {
     const user = await JoblyApi.patchUser(username, data);
-    setUser({username:data.username, firstName:data.firstName, lastName:data.lastName, email:data.email});
+    setUser(user);
     history.push('/companies');
   }
 
@@ -50,10 +51,12 @@ const App = () => {
   }
  
   return (
-    <div>
-      <NavBar user={user} logout={logout}/>
-      <Routes user={user} signup={signup} login={login} editProfile={editProfile}/>
-    </div>
+    <UserContext.Provider value={user}>
+      <div className="App">
+        <NavBar logout={logout}/>
+        <Routes signup={signup} login={login} editProfile={editProfile}/>
+      </div>
+    </UserContext.Provider>
   );
 }
 

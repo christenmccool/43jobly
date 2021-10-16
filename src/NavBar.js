@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {NavLink, useHistory} from 'react-router-dom';
 import './NavBar.css';
+import UserContext from './UserContext';
 
 /** NavBar component for Jobly app
  * Display Login and Signup links when no user logged in
  * Display Companies, Jobs, Profile, and Log out link when user logged in
  */
  
-const NavBar = ({user, logout}) => {
+const NavBar = ({logout}) => {
+  const user = useContext(UserContext);
   const history = useHistory();
 
   const handleLogout = () => {
