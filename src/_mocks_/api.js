@@ -1,5 +1,23 @@
-// import { apiGetMethod } from '../api'
+export default 
+  { loginUser: jest.fn(),
+    getUser: jest.fn(),
+    getCompanies: jest.fn()
+  }
+;
 
-// jest.mock('../api', () => ({ loginUser: jest.fn() }));
+// const mockedApi = ({
+//   loginUser: jest.fn(),
+//   getUser: jest.fn(),
+//   getCompanies: jest.fn()
+// };
+// )
 
-// export default 
+
+// export default () => jest.mock('./api', () => {
+//   return(
+//     { loginUser: jest.fn(),
+//       getUser: jest.fn(),
+//       getCompanies: jest.fn()
+//     }
+//   )
+// });

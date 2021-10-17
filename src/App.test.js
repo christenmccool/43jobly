@@ -2,15 +2,31 @@ import { render, asFragment, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
-import { loginUser, getUser, getCompanies } from './api.js';
-jest.mock('./api', () => {
-  return(
-    { loginUser: jest.fn(),
-      getUser: jest.fn(),
-      getCompanies: jest.fn()
-    }
-  )
-});
+
+// import {loginUser, getUser, getCompanies} from './api.js';
+
+// import {loginUser, getUser, getCompanies} from './_mocks_/api.js';
+import api from './api';
+
+// import mockedApi from './_mocks_/api.js';
+// jest.mock('./api', () => {return mockApi});
+jest.mock('./api');
+
+// jest.mock('./api', () => {
+//   return(
+//     { loginUser: jest.fn(),
+//       getUser: jest.fn(),
+//       getCompanies: jest.fn()
+//     }
+//   )
+// });
+
+beforeEach(() => {
+  api.loginUser.mockResolvedValueOnce("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNocmlzdGVuIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzNDQ3Njg5MX0.fDC8dNCeY3LwKh_SThuJKJ_5soUvjItHM7k6TC4roUU");
+  api.getUser.mockResolvedValueOnce({username: 'mockusername', firstName: 'Mockfirst', lastName: 'Mocklast', email: 'mockuser@mail.com'});
+  api.getCompanies.mockResolvedValueOnce([]);
+})
+
 
 test('if it renders without crashing', () => {
   render(<MemoryRouter><App /></MemoryRouter>);
@@ -24,9 +40,9 @@ test('if it matches snapshot', () => {
 test('if log in works', async () => {
   const {getByText, queryByLabelText, debug} = render(<MemoryRouter><App /></MemoryRouter>);
   
-  loginUser.mockResolvedValueOnce("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNocmlzdGVuIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzNDQ3Njg5MX0.fDC8dNCeY3LwKh_SThuJKJ_5soUvjItHM7k6TC4roUU");
-  getUser.mockResolvedValueOnce({username: 'mockusername', firstName: 'Mockfirst', lastName: 'Mocklast', email: 'mockuser@mail.com'});
-  getCompanies.mockResolvedValueOnce([]);
+  // loginUser.mockResolvedValueOnce("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNocmlzdGVuIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzNDQ3Njg5MX0.fDC8dNCeY3LwKh_SThuJKJ_5soUvjItHM7k6TC4roUU");
+  // getUser.mockResolvedValueOnce({username: 'mockusername', firstName: 'Mockfirst', lastName: 'Mocklast', email: 'mockuser@mail.com'});
+  // getCompanies.mockResolvedValueOnce([]);
 
   //Log in as test user
   const loginLink = getByText("Login");
@@ -39,8 +55,8 @@ test('if log in works', async () => {
   fireEvent.click(loginBtn);
   await waitFor(() => expect(getByText(`Log out mockusername`, {exact: false})).toBeInTheDocument());
 
-  expect(loginUser).toHaveBeenCalledTimes(1);
-
+  expect(api.loginUser).toHaveBeenCalledTimes(1);
+  debug();
   const homeBtn = getByText("Jobly");
   fireEvent.click(homeBtn);
   expect(getByText(`Welcome back, Mockfirst`)).toBeInTheDocument();
