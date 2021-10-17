@@ -2,64 +2,34 @@
 
 exports[`if matches snapshot 1`] = `
 <DocumentFragment>
-  <div
-    class="App"
+  <nav
+    class="NavBar"
   >
-    <nav
-      class="NavBar"
-    >
-      <div
-        class="NavBar-left"
-      >
-        <a
-          aria-current="page"
-          class="active"
-          href="/"
-        >
-          Jobly
-        </a>
-      </div>
-      <div
-        class="NavBar-right"
-      >
-        <a
-          href="/login"
-        >
-          Login
-        </a>
-        <a
-          href="/signup"
-        >
-          Signup
-        </a>
-      </div>
-    </nav>
     <div
-      class="Routes"
+      class="NavBar-left"
     >
-      <div
-        class="Home"
+      <a
+        aria-current="page"
+        class="active"
+        href="/"
       >
-        <h1>
-          Jobly
-        </h1>
-        <p>
-          All the jobs in one convenient place.
-        </p>
-        <div>
-          <a
-            href="/login"
-          >
-            Log in
-          </a>
-          <a
-            href="/signup"
-          >
-            Sign up
-          </a>
-        </div>
-      </div>
+        Jobly
+      </a>
     </div>
-  </div>
+    <div
+      class="NavBar-right"
+    >
+      <a
+        href="/login"
+      >
+        Login
+      </a>
+      <a
+        href="/signup"
+      >
+        Signup
+      </a>
+    </div>
+  </nav>
 </DocumentFragment>
 `;
