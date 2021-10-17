@@ -2,6 +2,7 @@ import { render, asFragment, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
+
 test('if it renders without crashing', () => {
   render(<MemoryRouter><App /></MemoryRouter>);
 });
