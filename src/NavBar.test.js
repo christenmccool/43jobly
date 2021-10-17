@@ -3,7 +3,33 @@ import { MemoryRouter } from 'react-router-dom';
 import NavBar from './App';
 import axiosMock from "axios";
 
-jest.mock('axios');
+// jest.mock('axios');
+
+test('if shows companies, jobs, and profile links when user logged in', async () => {
+  const {getByText, queryByLabelText, debug} = render(<MemoryRouter><NavBar /></MemoryRouter>);
+
+  // axiosMock.post.mockResolvedValueOnce({ data: {token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNocmlzdGVuIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzNDQ3Njg5MX0.fDC8dNCeY3LwKh_SThuJKJ_5soUvjItHM7k6TC4roUU"}});
+
+
+  //Log in as test user
+  const loginLink = getByText("Login");
+  fireEvent.click(loginLink);
+  const username = queryByLabelText(`Username`);
+  const password = queryByLabelText(`Password`);
+  const loginBtn = getByText("Submit");
+  fireEvent.change(username, {target: {value: "testuser"}});
+  fireEvent.change(password, {target: {value: "password"}});
+  fireEvent.click(loginBtn);
+
+  await waitFor(() => expect(getByText(`Log out`, {exact: false})).toBeInTheDocument());
+  debug();
+  // expect(getByText(`Companies`)).toBeInTheDocument();
+  // expect(getByText(`Jobs`)).toBeInTheDocument();
+});
+
+
+
+
 
 test('if renders without crashing', () => {
   render(<MemoryRouter><NavBar /></MemoryRouter>);
@@ -42,27 +68,6 @@ test('if login and signup links work', async () => {
   expect(queryByLabelText(`Email`)).toBeInTheDocument();
 });
 
-test('if shows companies, jobs, and profile links when user logged in', async () => {
-  const {getByText, queryByLabelText, debug} = render(<MemoryRouter><NavBar /></MemoryRouter>);
-
-  axiosMock.post.mockResolvedValueOnce({ data: {token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNocmlzdGVuIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzNDQ3Njg5MX0.fDC8dNCeY3LwKh_SThuJKJ_5soUvjItHM7k6TC4roUU"}});
-
-
-  //Log in as test user
-  const loginLink = getByText("Login");
-  fireEvent.click(loginLink);
-  const username = queryByLabelText(`Username`);
-  const password = queryByLabelText(`Password`);
-  const loginBtn = getByText("Submit");
-  fireEvent.change(username, {target: {value: "testuser"}});
-  fireEvent.change(password, {target: {value: "password"}});
-  fireEvent.click(loginBtn);
-
-  await waitFor(() => expect(getByText(`Log out`, {exact: false})).toBeInTheDocument());
-  debug();
-  // expect(getByText(`Companies`)).toBeInTheDocument();
-  // expect(getByText(`Jobs`)).toBeInTheDocument();
-});
 
 // test('if company and job links work', async () => {
 //   const {queryByText, queryByLabelText, debug} = render(<MemoryRouter><NavBar /></MemoryRouter>);
