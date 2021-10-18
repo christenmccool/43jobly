@@ -2,8 +2,8 @@ import { render, asFragment, fireEvent, waitFor, cleanup } from '@testing-librar
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
-jest.mock('./api');
 import api from './api';
+jest.mock('./api');
 
 
 // import {loginUser, getUser, getCompanies} from './api.js';

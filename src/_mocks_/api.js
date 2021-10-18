@@ -1,18 +1,20 @@
-// export default { 
-//   loginUser: jest.fn(),
-//   getUser: jest.fn(),
-//   getCompanies: jest.fn()
-// }
-
-
-function mockApi () {
-  return (
-    {
-      loginUser: jest.fn(),
-      getUser: jest.fn(),
-      getCompanies: jest.fn()
-    }
-  )
+export default { 
+  loginUser: jest.fn().mockResolvedValue({}),
+  getUser: jest.fn().mockResolvedValue({}),
+  getCompanies: jest.fn().mockResolvedValue([])
 }
 
-export  {mockApi};
+
+// function mockApi () {
+//   return (
+//     {
+//       loginUser: jest.fn(),
+//       getUser: jest.fn(),
+//       getCompanies: jest.fn()
+//     }
+//   )
+// }
+
+// export  {mockApi};
+
+
