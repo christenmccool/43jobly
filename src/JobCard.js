@@ -24,7 +24,7 @@ const JobCard = ({id, title, salary, equity, companyHandle, companyName, apply})
     <div className="JobCard">
       <div>
         <h1 className="JobCard-title">{title}</h1>
-        {appElem}
+        {apply? appElem : null}
       </div>
       {companyName ? <Link exact to={`/companies/${companyHandle}`}><span className="JobCard-subtitle">{companyName}</span></Link> : null}
       <p className="JobCard-info">Salary: {salary}</p>

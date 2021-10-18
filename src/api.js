@@ -57,6 +57,14 @@ class JoblyApi {
     return res.jobs;
   }
 
+   /** Get jobs with give jobid. */
+
+   static async getJob(id) {
+    let res = await this.request(`jobs/${id}`);
+    return res.job;
+  }
+
+
   /** Register a user with data
    * data is {username, password, firstName, lastName, email} 
    * Return a token */

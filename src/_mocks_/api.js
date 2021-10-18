@@ -1,23 +1,18 @@
-export default 
-  { loginUser: jest.fn(),
-    getUser: jest.fn(),
-    getCompanies: jest.fn()
-  }
-;
-
-// const mockedApi = ({
+// export default { 
 //   loginUser: jest.fn(),
 //   getUser: jest.fn(),
 //   getCompanies: jest.fn()
-// };
-// )
+// }
 
 
-// export default () => jest.mock('./api', () => {
-//   return(
-//     { loginUser: jest.fn(),
-//       getUser: jest.fn(),
-//       getCompanies: jest.fn()
-//     }
-//   )
-// });
+function mockApi () {
+  return (
+    {
+      loginUser: jest.fn(),
+      getUser: jest.fn(),
+      getCompanies: jest.fn()
+    }
+  )
+}
+
+export  {mockApi};

@@ -20,6 +20,7 @@ const NavBar = ({logout}) => {
         <div className="NavBar-right"> 
           <NavLink exact to="/companies">Companies</NavLink>
           <NavLink exact to="/jobs">Jobs</NavLink>
+          <NavLink exact to="/applications">Applications</NavLink>
           <NavLink exact to="/profile">Profile</NavLink>
           <button onClick={logout} className="NavBar-logout-btn">Log out {user.username}</button>
         </div> 
