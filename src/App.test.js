@@ -16,6 +16,13 @@ jest.mock('./api');
 //     }
 //   )
 // });
+// afterEach(() => {
+//   jest.clearAllMocks();
+// })
+
+beforeEach(() => {
+  api.getUser.mockResolvedValueOnce({username: 'mockusername', firstName: 'Mockfirst', lastName: 'Mocklast', email: 'mockuser@mail.com'});
+})
 
 
 test('if it renders without crashing', () => {
@@ -28,11 +35,12 @@ test('if it matches snapshot', () => {
 });
 
 
+
 test('if log in works', async () => {
   const {getByText, queryByLabelText, debug} = render(<MemoryRouter><App /></MemoryRouter>);
   
   api.loginUser.mockResolvedValueOnce("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNocmlzdGVuIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzNDQ3Njg5MX0.fDC8dNCeY3LwKh_SThuJKJ_5soUvjItHM7k6TC4roUU");
-  api.getUser.mockResolvedValueOnce({username: 'mockusername', firstName: 'Mockfirst', lastName: 'Mocklast', email: 'mockuser@mail.com'});
+  // api.getUser.mockResolvedValueOnce({username: 'mockusername', firstName: 'Mockfirst', lastName: 'Mocklast', email: 'mockuser@mail.com'});
   api.getCompanies.mockResolvedValueOnce([]);
 
   //Log in as test user
@@ -54,36 +62,36 @@ test('if log in works', async () => {
 });
 
 
-// test('if sign up works', async () => {
-//   const {getByText, queryByLabelText, debug} = render(<MemoryRouter><App /></MemoryRouter>);
+test('if sign up works', async () => {
+  const {getByText, queryByLabelText, debug} = render(<MemoryRouter><App /></MemoryRouter>);
   
-//   api.registerUser.mockResolvedValueOnce("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNocmlzdGVuIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzNDQ3Njg5MX0.fDC8dNCeY3LwKh_SThuJKJ_5soUvjItHM7k6TC4roUU");
-//   api.getUser.mockResolvedValueOnce({username: 'mockusername', firstName: 'Mockfirst', lastName: 'Mocklast', email: 'mockuser@mail.com'});
-//   api.getCompanies.mockResolvedValueOnce([]);
+  api.registerUser.mockResolvedValueOnce("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNocmlzdGVuIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTYzNDQ3Njg5MX0.fDC8dNCeY3LwKh_SThuJKJ_5soUvjItHM7k6TC4roUU");
+  // api.getUser.mockResolvedValueOnce({username: 'mockusername', firstName: 'Mockfirst', lastName: 'Mocklast', email: 'mockuser@mail.com'});
+  api.getCompanies.mockResolvedValueOnce([]);
 
-//   const signupLink = getByText("Signup");
-//   fireEvent.click(signupLink);
-//   const username = queryByLabelText(`Username`);
-//   const password = queryByLabelText(`Password`);
-//   const firstName = queryByLabelText(`First name`);
-//   const lastName = queryByLabelText(`Last name`);
-//   const email = queryByLabelText(`Email`);
+  const signupLink = getByText("Signup");
+  fireEvent.click(signupLink);
+  const username = queryByLabelText(`Username`);
+  const password = queryByLabelText(`Password`);
+  const firstName = queryByLabelText(`First name`);
+  const lastName = queryByLabelText(`Last name`);
+  const email = queryByLabelText(`Email`);
 
-//   const signupBtn = getByText("Submit");
-//   fireEvent.change(username, {target: {value: "testingtesting"}});
-//   fireEvent.change(password, {target: {value: "password"}});
-//   fireEvent.change(firstName, {target: {value: "Testy"}});
-//   fireEvent.change(lastName, {target: {value: "McText"}});
-//   fireEvent.change(email, {target: {value: "test@mail.com"}});
-//   fireEvent.click(signupBtn);
-//   await waitFor(() => expect(getByText(`Log out mockusername`)).toBeInTheDocument());
-//   expect(api.registerUser).toHaveBeenCalledTimes(1);
+  const signupBtn = getByText("Submit");
+  fireEvent.change(username, {target: {value: "testingtesting"}});
+  fireEvent.change(password, {target: {value: "password"}});
+  fireEvent.change(firstName, {target: {value: "Testy"}});
+  fireEvent.change(lastName, {target: {value: "McText"}});
+  fireEvent.change(email, {target: {value: "test@mail.com"}});
+  fireEvent.click(signupBtn);
+  await waitFor(() => expect(getByText(`Log out mockusername`)).toBeInTheDocument());
+  expect(api.registerUser).toHaveBeenCalledTimes(1);
 
-//   debug();
-//   const homeBtn = getByText("Jobly");
-//   fireEvent.click(homeBtn);
-//   expect(getByText(`Welcome back, Mockfirst`)).toBeInTheDocument();
-// });
+  debug();
+  const homeBtn = getByText("Jobly");
+  fireEvent.click(homeBtn);
+  expect(getByText(`Welcome back, Mockfirst`)).toBeInTheDocument();
+});
 
 // test('if log out works', async () => {
 //   const {queryByText, queryByLabelText, debug} = render(<MemoryRouter><App /></MemoryRouter>);

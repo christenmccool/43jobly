@@ -30,6 +30,8 @@ const App = () => {
       JoblyApi.token = token;
       const payload = jwt.decode(token);
       const user = await JoblyApi.getUser(payload.username);
+      console.log(user);
+
       setUser(user);
     }
     getUserFromToken();
@@ -42,6 +44,7 @@ const App = () => {
 
   const signup = async (data) => {
     const token = await JoblyApi.registerUser(data);
+    console.log(token);
     setToken(token);
   }
 

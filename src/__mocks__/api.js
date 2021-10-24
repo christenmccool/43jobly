@@ -1,7 +1,8 @@
 export default { 
   loginUser: jest.fn().mockResolvedValue({}),
   getUser: jest.fn().mockResolvedValue({}),
-  getCompanies: jest.fn().mockResolvedValue([])
+  getCompanies: jest.fn().mockResolvedValue([]),
+  registerUser: jest.fn().mockResolvedValue([])
 }
 
 
